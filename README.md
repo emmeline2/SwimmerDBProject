@@ -11,9 +11,9 @@ To Run:
 2. connect to virtual server (run commands below) 
 
 from cmd window: 
-cd swimmerdbWorld 
-workon swimmerdbWorld
-python app.py
-flask run
-
+  1. cd swimmerdbWorld 
+  2. workon swimmerdbWorld
+  3. python app.py
+  4. flask run
+  
 //app will be on http://127.0.0.1:5000/
