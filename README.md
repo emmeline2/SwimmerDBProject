@@ -17,3 +17,6 @@ from cmd window:
   4. flask run
   
 //app will be on http://127.0.0.1:5000/
+
+install mysql.connector
+$ pip install mysql-connector-python-rf
