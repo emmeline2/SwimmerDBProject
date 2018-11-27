@@ -3,6 +3,7 @@
 #route for login page logic 
 from flask import Flask, render_template, redirect, url_for, request
 import configparser
+import mysql.connector
 
 #config file 
 config = configparser.ConfigParser()
@@ -11,9 +12,26 @@ config.read('config.ini')
 #app server
 app = Flask(__name__)
 
-#@app.route('/')
-def basic_response(): 
-    return "It works!"
+
+#SQL querry set up 
+'''
+def sql_query(sql): 
+    db = mysql.connector.connect(**config['mysql.connector'])
+    cursor = db.cursor() 
+    cursor.execute(sql)
+    result = cursor.fetchall()
+    cursor.close()
+    return result
+
+def sql_execute(sql): 
+    db = mysql.connector.connect(**config['mysql.connector'])
+    cursor = db.cursor()
+    cursor.execute(sql)
+    db.commit()
+    cursor.close()
+    db.close()
+'''
+
 
 @app.route('/')
 def template_response(): 
@@ -21,7 +39,8 @@ def template_response():
 
 @app.route('/success/<name>')
 def success(name): 
-    return 'welcome %s' % name
+    #return 'login html hello'
+    return render_template('login.html')
 
 @app.route('/login', methods = ['POST', 'GET'])
 def login(): 

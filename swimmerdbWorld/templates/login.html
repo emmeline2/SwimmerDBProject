@@ -1,16 +1,17 @@
 <!DOCTYPE html> 
 <html> 
-	<head>
-		<title> Swimmer Data Base Project</title> 
-	</head> 
-	<body> 
-			<h1> Welcome Swimmers and Coaches - HIII</h1>
-			<form action = http://localhost:5000/login" method = "post"> 
-				<p>Enter Name: </p>
-				<P> <input type = "text" name = "nm"/> </P>
-				<p>Enter Password: </p>
-				<p> <input type = "text" password = "pass"/></p>
-				<p> <input type = "submit" value = "submit" /></p>
-			</form>
-	</body> 
+    <body>
+        <h1> Welcome, Emmeline</h1>
+        <!--<p> You successfully logged in </p>
+        <p> Here are your reccords:</p>
+        {% if entry_records %}
+        <table>
+            {% for entry_record in entry_records %}
+            <tr><td> {{entry_reccord.stroke}}  {{entry_reccord.distance}} {{entry_reccord.time}}  </td></tr>
+            {% endfor %}
+        </table>
+        {%else}
+        <p>No reccords found</p>
+        {% endif %}-->
+    </body>
 </html> 
