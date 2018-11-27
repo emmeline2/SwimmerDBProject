@@ -19,16 +19,19 @@ def basic_response():
 def template_response(): 
     return render_template('home.html')
 
-#@app.route('/', method=['GET', 'POST'])
-def login():
-    print(login.form)
-    error = None
+@app.route('/success/<name>')
+def success(name): 
+    return 'welcome %s' % name
+
+@app.route('/login', methods = ['POST', 'GET'])
+def login(): 
     if request.method == 'POST': 
-        if request.form['username'] != 'admin' or request.form['password'] != 'admin': 
-            error = 'Invaid credentials. Try again please.'
-        else: 
-            return redirect(url_for('/'))
-    return render_template('home.html', error=error)
+        user = request.form['nm']
+        return redirect(url_for('success', name = user))
+    else: 
+        user = request.args.get('nm')
+        return redirect(url_for('success', name = user))
+
 
 if __name__ == '___main___': 
     app.run(**config['app'])
