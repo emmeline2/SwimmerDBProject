@@ -14,8 +14,8 @@ app.secret_key = 'correct horse battery staple'
 def sql_query(sql): 
     
     try: 
-        db = mysql.connector.connect(**config['mysql.connector'])
-        #db = mysql.connector.connect(user='new_user', password='db2018', host = '127.0.0.1', database='webdatabase', auth_plugin='mysql_native_password')
+        db = mysql.connector.connect(**config['mysql.connector']) #creates a 'caching_sha1_password' error bchanging the auth_plugin as below doesnt solve the problem 
+        #db = mysql.connector.connect(user='new_user', password='db2018', host = '127.0.0.1', database='webdatabase1', auth_plugin='mysql_native_password')
     except mysql.connector.Error as err: 
         if err.errno == errorcode.ER_ACCESS_DENIED_ERROR: 
             print("somethig is wrong with your credentials ")
