@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<body onload="userActive()">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Member Login</title>
+
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/additional-methods.min.js"></script>
+
+</head>
+
+
+<body>
+
+    <div data-role="page" id="loginPage">
+
+        <a href="" onclick="window.location.href='index.html';return false" rel="external">
+            <div data-role="header" data-position="fixed" data-theme="b">
+                <h1 style="color:white; text-align: center; font-size: 6vh; padding-bottom: 0;">Swimmer Database Welcome</h1>
+                <p style="color:grey; text-align: center; margin-top: 0; font-size: 2vh; letter-spacing:-0.5px">mobile wash and fold service</p>
+            </div>
+        </a> <!-- Header -->
+
+        <div data-role="content">
+            <h2 style="text-align:center; margin:0 0 0 0; padding: 0 0 0 0">Member Login</h2>
+
+            <p>Thanks for visiting! Please either login below, or <a href="" onclick="window.location.href='registrationPage.html';return false" rel="external">click here to register</a>.</p>
+
+            <form name="loginForm" id="loginForm">
+
+                <input type="text" name="loginUsername" id="loginUsername" placeholder="Email Address"/>
+                <input type="Password" name="loginPassword" id="loginPassword" placeholder="Password"/>
+
+                <div>
+                    <input class="btn btn-primary" id="submit-button" type="button" value="Login" onclick="checkLogin()">
+                </div>
+            </form>
+        </div>
+
+        <div id="rejectedLogin">
+        </div>
+    </div>
+
+    <script>
+        function checkLogin() {
+            var loginUsername = document.getElementById("loginUsername").value;
+            var loginPassword = document.getElementById("loginPassword").value;
+
+            // Returns successful data submission message when the entered information is stored in database.
+
+            if (loginUsername == '' || loginPassword == '') {
+                alert("Please Fill All Fields");
+            } else {
+                // AJAX code to submit form.
+                $.ajax({
+                    type: "POST",
+                    url: "loginChecker.php",
+                    data: {
+                        loginUsername:loginUsername,
+                        loginPassword:loginPassword
+                    },
+                    cache: false,
+                    success: function(html) {
+                        if($.trim(html) === "success")
+                        {
+                            window.location.href = "memberPage.html";
+                        }
+                        else($.trim(html) === "failure")
+                        {
+                            document.getElementById("rejectedLogin").innerHTML = "<p style=\"color:red; margin:0 0 0 0; padding:0 0 0 0; text-align: center\">Sorry, your account could not be found. Please try again.</p>";
+                        }
+                    }
+                });
+            }
+            return false;
+        }
+
+        function logoutUser() {
+            $.ajax({
+                type: 'POST',
+                url: 'logout.php',
+                success: function(data) {
+                    alert(data);
+                }
+            });
+        }
+
+        function userActive() {
+            $.ajax({
+                type: 'POST',
+                url: 'userActive.php',
+                data: null,
+                success: function(data) {
+                    if(data != "false") //if someone is logged
+                    {
+                        window.location.href = "memberPage.html";
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>

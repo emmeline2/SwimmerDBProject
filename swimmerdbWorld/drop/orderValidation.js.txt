@@ -1,0 +1,45 @@
+$(document).ready(function() {
+
+  $.validator.setDefaults({
+      unhighlight: function(element) {
+          
+      }
+    });
+
+  $("#newOrderForm").validate({
+
+  errorElement:'h1',
+    rules: {
+      tier: {
+        required: true
+      }
+    },
+    messages: {
+      tier: {
+        required: 'Please choose your order style'
+      }
+    },
+    errorPlacement: function (error, element) {
+        error.insertBefore(element.parent());
+    },
+    submitHandler: function (form) {
+      $.ajax({
+          type: "POST",
+          url: "submitOrder.php",
+          data: $(form).serialize(),
+          cache: false,
+          success: function(html) {
+              if(html == "success")
+              {
+                $(':mobile-pagecontainer').pagecontainer('change', '#orderSubmittedPage');
+              }
+              else
+              {
+                alert("Sorry, something went wrong. Please refresh and try again.");
+              }
+          }
+      });
+    }
+  });
+
+});

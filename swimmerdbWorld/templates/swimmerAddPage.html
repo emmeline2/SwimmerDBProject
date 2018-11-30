@@ -2,11 +2,20 @@
 <html lang="en">
 <head>
 	<title>Add Page</title>
+	<script>
+	function validateForm() {
+		var x = document.forms["addForm"]["swimmerID"].value;
+		if (x != "{{swimmerID}}") {
+			alert("Can only log for ");
+			return false;
+    	}
+	}
+</script>
 </head>
 <body>
 	<h1>Add a record</h1>
 	<p>
-		<form method="POST" action="{{url_for('login')}}">
+		<form name="addForm" method="POST" action="{{url_for('addPage')}}" onsubmit="return validateForm()">
 			Swimmer ID:
 			<input type="number" name="swimmerID">
 			<br/>

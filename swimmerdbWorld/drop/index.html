@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<body onload="userActive()">
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+	<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+	<script src="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="navbarStyle.css">
+</head>
+
+<body>
+
+	<div data-role="page" id="aboutPage">
+		<div data-role="header" data-position="fixed" data-theme="b">
+			<h1 style="color:white; text-align: center; font-size: 6vh; padding-bottom: 0;">dropp.</h1>
+			<p style="color:grey; text-align: center; margin-top: 0; font-size: 2vh; letter-spacing:-0.5px">mobile wash and fold service</p>
+
+			<div data-role="navbar">
+	      		<ul>
+					<li><a href="#" class="ui-btn-active ui-state-persist"><span class="navbarText">About</span></a></li>
+					<li><a href="#infoPage" onclick="userActive()"><span class="navbarText">Info/Pricing</span></a></li>
+					<li><a href="#orderPage" onclick="userActive()"><span class="navbarText">Place an order!</span></a></li>
+	      		</ul>
+	    	</div>
+		</div>
+		</a>
+		
+		<div data-role="main" class="ui-content">
+			<div>
+				<h1 style="text-align: center">About dropp.</h1>
+				<p style="text-align: justify;">
+					dropp. is an exciting new service that makes doing your laundry easier than ever before!
+					We are a mobile wash and fold service that will pick up, clean, and drop off your laundry
+					right to your home, office, or somewhere on the go!
+					<br /><br />
+					Here's where we're going to tell you about the story of how we got started, or maybe just
+					use big words like "autocompletion GPS technology" to convince you of how dope our laundry
+					truck is.</p>
+			</div>
+	  	</div>
+		
+	  	<div data-role="main" class="ui-content">
+	    	<a href="" class="ui-btn" onclick="window.location.href = 'login.html'; return false" rel="external" id="loginButton1">Login</a>
+		</div>
+	</div>
+
+
+	<div data-role="page" id="infoPage">
+		<div data-role="header" data-position="fixed" data-theme="b">
+			<h1 style="color:white; text-align: center; font-size: 6vh; padding-bottom: 0;">dropp.</h1>
+			<p style="color:grey; text-align: center; margin-top: 0; font-size: 2vh; letter-spacing:-0.5px">mobile wash and fold service</p>
+			
+			<div data-role="navbar">
+	      		<ul>
+					<li><a href="#aboutPage" onclick="userActive()"><span class="navbarText">About</span></a></li>
+					<li><a href="#" class="ui-btn-active ui-state-persist"><span class="navbarText">Info/Pricing</span></a></li>
+					<li><a href="#orderPage" onclick="userActive()"><span class="navbarText">Place an order!</span></a></li>
+	      		</ul>
+	    	</div>
+		</div>
+
+	  	
+
+	  	<div data-role="main" class="ui-content">
+		    <div data-role="collapsibleset">
+		    	<div data-role="collapsible" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" data-iconpos="right">
+					<h3>Basic</h3>
+		        	<p>This is our basic option. We pick up your clothes. We wash them, dry them, and fold them. Then we deliver them right to you! Laundry has never been this easy!</p>
+		      	</div>
+		      	<div data-role="collapsible" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" data-iconpos="right">
+		        	<h3>Enhanced (+$3.00)</h3>
+		        	<p>With our enhanced option, we give you prefernece of fabric softener and/or dryer sheets and we will separate colors as you specify!</p>
+		      	</div>
+		      	<div data-role="collapsible" data-collapsed-icon="carat-d" data-expanded-icon="carat-u" data-iconpos="right">
+		        	<h3>Professional (+$5.00)</h3>
+		        	<p>With our professional option, we treat your clothes with the upmost care! In addition to the perks of our enhanced option, we will also hang and/or bleach specified garments. This way your whites will be looking crisp and bright!</p>
+		      	</div>
+		    </div>
+		</div>
+
+		<div data-role="main" class="ui-content">
+	    	<a href="" class="ui-btn" onclick="window.location.href = 'login.html'; return false" rel="external" id="loginButton2">Login</a>
+		</div>
+	</div>
+
+
+	<div data-role="page" id="orderPage">
+		<div data-role="header" data-position="fixed" data-theme="b">
+			<h1 style="color:white; text-align: center; font-size: 6vh; padding-bottom: 0;">dropp.</h1>
+			<p style="color:grey; text-align: center; margin-top: 0; font-size: 2vh; letter-spacing:-0.5px">mobile wash and fold service</p>
+			
+			<div data-role="navbar">
+	      		<ul>
+					<li><a href="#aboutPage" onclick="userActive()"><span class="navbarText">About</span></a></li>
+					<li><a href="#infoPage" onclick="userActive()"><span class="navbarText">Info/Pricing</span></a></li>
+					<li><a href="" class="ui-btn-active ui-state-persist"><span class="navbarText">Place an order!</span></a></li>
+	      		</ul>
+	    	</div>
+		</div>
+
+	  	
+
+		<div data-role="main" class="ui-content">
+	    	<ul data-role="listview" data-inset="true">
+	      		<li>
+	        		<a href="" onclick="window.location.href='newOrder.html';return false" rel="external">
+	        		<img style="float:left; max-width=10%" src="laundry.jpg">
+	        		<h2>Order Now!</h2>
+	        		<p style="white-space: normal !important;"> There's never a better time to make laundry easier.</p>
+	        		</a>
+	      		</li>
+	    	</ul>
+	  	</div>
+	  	
+	  	<div data-role="main" class="ui-content">
+	    	<a href="" class="ui-btn" onclick="window.location.href = 'login.html'; return false" rel="external" id="loginButton3">Login</a>
+		</div>
+	</div> 
+
+	<script>
+		function userActive() {
+            $.ajax({
+                type: 'POST',
+                url: 'userActive.php',
+                data: null,
+                success: function(data) {
+                    if(data != "false") //if someone is logged
+                    {
+                        document.getElementById("loginButton1").innerHTML = "Member Page";
+                        document.getElementById("loginButton2").innerHTML = "Member Page";
+                        document.getElementById("loginButton3").innerHTML = "Member Page";
+                    }
+                }
+            });
+        }
+	</script>
+</body>
+</html>
