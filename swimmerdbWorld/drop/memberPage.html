@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<body onload="userActive()">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Member Login</title>
+
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="//code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/additional-methods.min.js"></script>
+</head>
+
+
+<body>
+    <div data-role="page" id="memberArea">
+        <a href="" onclick="window.location.href='index.html';return false" rel="external">
+            <div data-role="header" data-position="fixed" data-theme="b">
+                <h1 style="color:white; text-align: center; font-size: 6vh; padding-bottom: 0;">dropp.</h1>
+                <p style="color:grey; text-align: center; margin-top: 0; font-size: 2vh; letter-spacing:-0.5px">mobile wash and fold service</p>
+            </div>
+        </a> <!-- Header -->
+
+        <h1>Member Area</h1>
+        <div id="MemberID"></div>
+
+        <a href="" onclick="window.location.href='newOrder.html';return false" rel="external" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-tag">Place an order!</a>
+
+        <a href="" class="ui-btn ui-shadow ui-corner-all ui-btn-icon-left ui-icon-action" onclick="logoutUser()">Log out</a>
+    </div>
+
+    <script>
+        function logoutUser() {
+            $.ajax({
+                type: 'POST',
+                url: 'logout.php',
+                success: function(data) {
+                    alert(data);
+                }
+            });
+            location.reload();
+        }
+
+        function userActive() {
+            $.ajax({
+                type: 'POST',
+                url: 'userActive.php',
+                data: null,
+                success: function(data) {
+                    if(data === "false")
+                    {
+                        window.location.href = "login.html";
+                    }
+                    else{
+                        //userActive sends back email, firstname, and phone number
+
+                        var userInfo = JSON.parse(data);
+                        document.getElementById("MemberID").innerHTML = "Hi, " + userInfo.FirstName + "!";                
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>

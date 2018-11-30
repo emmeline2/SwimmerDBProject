@@ -1,0 +1,93 @@
+$(document).ready(function() {
+
+  $.validator.setDefaults({
+      unhighlight: function(element) {
+          
+      }
+    });
+
+
+  $.validator.addMethod('strongPassword', function(value, element) {
+    return this.optional(element) 
+      || value.length >= 6
+      && /\d/.test(value)
+      && /[a-z]/i.test(value);
+  }, 'Your password must be at least 6 characters long and contain at least one number and one character.')
+
+  $("#registerform").validate({
+
+  errorElement:'h1',
+    rules: {
+      EmailAddress: {
+        required: true,
+        email: true
+      },
+      Password1: {
+        required: true,
+        strongPassword: true
+      },
+      Password2: {
+        required: true,
+        equalTo: '#Password1'
+      },
+      FirstName: {
+        required: true,
+        lettersonly: true
+      },
+      LastName: {
+        required: true,
+        lettersonly: true
+      },
+      PhoneNumber: {
+        required: true,
+        phoneUS: true
+      },
+      terms: {
+      required: true
+      },
+    },
+    messages: {
+      EmailAddress: {
+        required: 'Please enter an email address.',
+        Email: 'Please enter a <em>valid</em> email address.'
+      },
+      terms: {
+        required: 'You must agree to our terms and services to create an account'
+      },
+      Password1: {
+        required: 'Please create a password'
+      }
+    },
+    errorPlacement: function (error, element) {
+      if (element.prop('type') === 'checkbox') {
+        error.insertAfter(element.parent());
+
+      } else {
+        error.insertAfter(element.parent());
+      }
+    },
+    submitHandler: function (form) {
+      $.ajax({
+          type: "POST",
+          url: "registerNewUser.php",
+          data: $(form).serialize(),
+          cache: false,
+          success: function(html) {
+              if(html == "success")
+              {
+                $(':mobile-pagecontainer').pagecontainer('change', '#successPage');
+              }
+              else if (html == "taken")
+              {
+                $(':mobile-pagecontainer').pagecontainer('change', '#takenPage');
+              }
+              else
+              {
+                alert("Error, something went wrong. Please reload and try again.");
+              }
+          }
+      });
+    }
+  });
+
+});

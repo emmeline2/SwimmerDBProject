@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<body onload="userActive()">
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Member Login</title>
+
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/additional-methods.min.js"></script>
+    <script src="orderValidation.js"></script>
+    <link rel="stylesheet" type="text/css" href="errorStyle.css">
+</head>
+
+
+
+
+<body>
+
+	<div data-role="page" id="orderFormPage">
+		<a href="" onclick="window.location.href='index.html';return false" rel="external">
+	        <div data-role="header" data-position="fixed" data-theme="b">
+	            <h1 style="color:white; text-align: center; font-size: 6vh; padding-bottom: 0;">dropp.</h1>
+				<p style="color:grey; text-align: center; margin-top: 0; font-size: 2vh; letter-spacing:-0.5px">mobile wash and fold service</p>
+	        </div>
+	    </a>
+
+
+		<div data-role="main" class="ui-content">
+		    <form name="newOrderForm" id="newOrderForm">
+		      	
+		      	<fieldset data-role="controlgroup">
+		      		<legend>Choose your order style:</legend>
+		        	<label for="basic">Basic<br /><span style="font-size:.75em; color:grey;">Standard wash, dry, and fold with temperature preferences.</span></label>
+		        	<input type="radio" name="tier" id="basic" value="basic">
+
+		        	<label for="enhanced">Enhanced (+$3.00)<br /><span style="font-size:.75em; color:grey;">Additional choice to add fabric softener, dryer sheets, and/or color separation.</span></label>
+		        	<input type="radio" name="tier" id="enhanced" value="enhanced">
+
+		        	<label for="professional">Professional (+$5.00)<br /><span style="font-size:.75em; color:grey;">Clothes are hung. Option to bleach whites.</span></label>
+		        	<input type="radio" name="tier" id="professional" value="professional">
+				</fieldset> <!-- Tier -->
+		        
+		  		<fieldset class="ui-field-contain">
+			        <legend>Choose your delivery method:</legend>
+			        <select name="deliveryMethod" id="deliveryMethod" data-native-menu="false" data-placeholder="true">
+			        	<option value="">Choose one...</option>
+				        <option value="fiveDay">Standard: 5 days</option>
+				        <option value="threeDay">Express: 3 days (+$3.00)</option>
+				        <option value="twoDay">Rapid: 2 days (+$5.00)</option>
+			        </select>
+			    </fieldset> <!-- Delivery Method -->
+
+			    <fieldset class="ui-field-contain">
+			        <legend>Choose your drop-off time:</legend>
+			        <select name="dropoffTime" id="dropoffTime" data-native-menu="false" data-placeholder="true">
+			        	<option value="">Choose one...</option>
+				        <option value="AM">AM (8AM-12PM)</option>
+				        <option value="PM">PM (1PM-5PM)</option>
+			        </select>
+			    </fieldset> <!-- Drop off Time -->
+
+			    <fieldset class="ui-field-contain">
+			        <legend>Delivery Address:</legend>
+
+	      			<input type="text" name="streetAddress1" id="streetAddress1" data-clear-btn="true" placeholder="Street address, P.O. box, etc.">
+
+	      			<input type="text" name="streetAddress2" id="streetAddress2" data-clear-btn="true" placeholder="Apartment, suite, unit, etc.">
+
+					<input type="text" name="city" id="city" data-clear-btn="true" placeholder="City">
+
+					<input type="text" name="state" id="state" data-clear-btn="true" placeholder="State, Province, Region">
+
+					<input type="int" name="ZIP" id="ZIP" data-clear-btn="true" maxlength="5" placeholder=ZIP>      			
+	 		    </fieldset> <!-- Delivery Info -->
+
+	 		    <fieldset class="ui-field-contain">
+			        <label for="card grid">Card Number:</label>
+			       	<div class="ui-grid-c" id="card grid">
+			       		<div class="ui-block-a">
+							<input type="text" name="creditCard1" id="creditCard1" placeholder="xxxx" maxlength="4" data-mini="true" style="-webkit-appearance: none; margin: 0;">
+						</div>
+
+						<div class="ui-block-b">
+	      					<input type="text" name="creditCard2" id="creditCard2" placeholder="xxxx" maxlength="4" data-mini="true">
+	      				</div>
+
+	      				<div class="ui-block-c">
+							<input type="text" name="creditCard3" id="creditCard3" placeholder="xxxx" maxlength="4" data-mini="true">
+						</div>
+
+						<div class="ui-block-d">
+							<input type="text" name="creditCard4" id="creditCard4" placeholder="xxxx" maxlength="4" data-mini="true">
+						</div>
+					</div>
+				</fieldset> <!--Credit Card Number -->
+
+				<fieldset data-role="controlgroup" data-type="horizontal">
+	          		<legend>Expires on:</legend>
+			            <select name="month" id="month">
+		              		<option value="jan">1</option>
+		              		<option value="feb">2</option>
+		              		<option value="mar">3</option>
+		              		<option value="apr">4</option>
+		              		<option value="may">5</option>
+		              		<option value="jun">6</option>
+		              		<option value="jul">7</option>
+		              		<option value="aug">8</option>
+		              		<option value="sep">9</option>
+		              		<option value="oct">10</option>
+		              		<option value="nov">11</option>
+		              		<option value="dec">12</option>
+			            </select>
+
+			            <select name="year" id="year">
+			              	<option value="2017">2017</option>
+			              	<option value="2018">2018</option>
+			              	<option value="2019">2019</option>
+			              	<option value="2020">2020</option>
+			              	<option value="2021">2021</option>
+			              	<option value="2022">2022</option>
+			              	<option value="2023">2023</option>
+			              	<option value="2024">2024</option>
+			              	<option value="2025">2025</option>
+			              	<option value="2026">2026</option>
+			              	<option value="2027">2027</option>
+			              	<option value="2017">2017</option>
+			              	<option value="2018">2018</option>
+			              	<option value="2019">2019</option>
+			              	<option value="2020">2020</option>
+			              	<option value="2021">2021</option>
+			              	<option value="2022">2022</option>
+			              	<option value="2023">2023</option>
+			              	<option value="2024">2024</option>
+			              	<option value="2025">2025</option>
+			              	<option value="2026">2026</option>
+			              	<option value="2027">2027</option>
+			              	<option value="2017">2017</option>
+			              	<option value="2018">2018</option>
+			              	<option value="2019">2019</option>
+			              	<option value="2020">2020</option>
+			              	<option value="2021">2021</option>
+			              	<option value="2022">2022</option>
+			              	<option value="2023">2023</option>
+			              	<option value="2024">2024</option>
+			              	<option value="2025">2025</option>
+			              	<option value="2026">2026</option>
+			              	<option value="2027">2027</option>
+			              	<option value="2017">2017</option>
+			              	<option value="2018">2018</option>
+			              	<option value="2019">2019</option>
+			              	<option value="2020">2020</option>
+			              	<option value="2021">2021</option>
+			              	<option value="2022">2022</option>
+			              	<option value="2023">2023</option>
+			              	<option value="2024">2024</option>
+			              	<option value="2025">2025</option>
+			              	<option value="2026">2026</option>
+			              	<option value="2027">2027</option>
+			              	<option value="2017">2017</option>
+			              	<option value="2018">2018</option>
+			              	<option value="2019">2019</option>
+			              	<option value="2020">2020</option>
+			              	<option value="2021">2021</option>
+			              	<option value="2022">2022</option>
+			              	<option value="2023">2023</option>
+			              	<option value="2024">2024</option>
+			              	<option value="2025">2025</option>
+			              	<option value="2026">2026</option>
+			              	<option value="2027">2027</option>
+			            </select>	
+	 		    </fieldset> <!-- Card Info -->
+
+	            <input class="btn btn-primary" id="submit-button" type="submit" value="Submit Order!">
+			</form>
+		</div>
+	</div>
+
+	<div data-role="page" id="orderSubmittedPage">
+		<a href="" onclick="window.location.href='index.html';return false" rel="external">
+            <div data-role="header" data-position="fixed" data-theme="b">
+                <h1 style="color:white; text-align: center; font-size: 6vh; padding-bottom: 0;">dropp.</h1>
+                <p style="color:grey; text-align: center; margin-top: 0; font-size: 2vh; letter-spacing:-0.5px">mobile wash and fold service</p>
+            </div>
+        </a>
+
+
+		<div data-role="main" class="ui-content">
+			<p id="submissionSection"></p>
+			<p>Your order will be delivered in the estimated time!</p>
+			<a href="" onclick="window.location.href='memberPage.html';return false" rel="external" class="ui-btn ui-shadow ui-corner-all">Go back to your homepage.</a>
+		</div>
+	</div>
+
+	<script>
+        function userActive() {
+            $.ajax({
+                type: 'POST',
+                url: 'userActive.php',
+                data: null,
+                success: function(data) {
+                    if(data == "false")
+                    {
+                        window.location.href = "login.html";
+                    }
+                }
+            });
+        }
+    </script>
+</body>
+</html>

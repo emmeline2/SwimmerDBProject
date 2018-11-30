@@ -58,7 +58,11 @@ def login():
         return redirect(url_for('success'))
 
     #store username in session cookie
-    #session['name'] = username 
+    session['name'] = username 
+
+    sql = "select id from person where name={username}"
+    swimmer_Id = sql_query(sql)
+    session['swimmerID'] = swimmer_Id
 
     #should else return failure 
     return redirect(url_for('success'))
@@ -69,6 +73,21 @@ def success():
     return render_template('login_success_swimmer.html')
     #return "yay successsss!"
 
+#Add for Swimmer
+@app.route('/addPage')
+def addPage(): 
+    sql = "insert into entry values(id, stroke, time, distance)"
+    added_value = sql_query(sql)
+    return render_template('login_success_swimmer.html')
+
+#Add for Coach
+@app.route('/addPageCoach')
+def addPage(): 
+    sql = "insert into entry values(id, stroke, time, distance)"
+    added_value = sql_query(sql)
+    return render_template('login_success_coach.html')
+
+
 @app.route('/logout')
 def logout(): 
     flash('You are now logged out. Redirecting to login page')
@@ -76,3 +95,6 @@ def logout():
 
 if __name__ == '___main___': 
     app.run(**config['app'])
+
+
+

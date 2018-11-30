@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<body data-turbolinks="false">
+<head>
+    <title>Register Page</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="https://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.16.0/additional-methods.min.js"></script>
+    <script src="loginValidation.js"></script>
+    <link rel="stylesheet" type="text/css" href="errorStyle.css">
+</head>
+
+
+<body>
+    <div data-role="page" id="registerPage">
+        <div>
+            <a href="" onclick="window.location.href='index.html';return false" rel="external">
+            <div data-role="header" data-position="fixed" data-theme="b">
+                <h1 style="color:white; text-align: center; font-size: 6vh; padding-bottom: 0;">dropp.</h1>
+                <p style="color:grey; text-align: center; margin-top: 0; font-size: 2vh; letter-spacing:-0.5px">mobile wash and fold service</p>
+            </div>
+        </a> <!-- Header -->
+        </div>
+
+        <div id="main">
+             
+            <p>Please enter your details below to register.</p>
+             
+            <form name="registerform" id="registerform">
+                <input type="email" name="EmailAddress" id="EmailAddress" placeholder="Email Address"/>
+
+                <input type="password" name="Password1" id="Password1" placeholder="Password"/>
+
+                <input type="password" name="Password2" placeholder="Re-enter Password">
+
+                <input type="text" name="FirstName" id="FirstName" placeholder="First name">
+
+                <input type="text" name="LastName" id="LastName" placeholder="Last name">
+
+                <input type="text" name="PhoneNumber" id="PhoneNumber" placeholder="Phone Number">
+
+                <label>
+                    <input id="terms" name="terms" type="checkbox"> 
+                    I have read, consent and agree to the User Agreement and Privacy Policy
+                    (including the processing and disclosing of my personal data), and I am of 
+                    legal age. I understand that I can change my communication preferences at any
+                    time. Please read the Key Payment and ServiceInformation.
+                </label>
+
+
+                <input class="btn btn-primary" id="submit-button" type="submit" value="Sign Up">
+            </form>
+
+        </div>
+    </div>
+
+    <div data-role="page" id="successPage">
+        <div>
+            <a href="" onclick="window.location.href='index.html';return false" rel="external">
+            <div data-role="header" data-position="fixed" data-theme="b">
+                <h1 style="color:white; text-align: center; font-size: 6vh; padding-bottom: 0;">dropp.</h1>
+                <p style="color:grey; text-align: center; margin-top: 0; font-size: 2vh; letter-spacing:-0.5px">mobile wash and fold service</p>
+            </div>
+        </a> <!-- Header -->
+        </div>
+
+        <div>
+            <h1>Success</h1>
+            <p>Your account was successfully created. Please <a href="" onclick="window.location.href='login.html';return false" rel="external">click here to login</a>.</p>
+        </div>
+    </div>
+
+    <div data-role="page" id="takenPage">
+        <div>
+            <a href="" onclick="window.location.href='index.html';return false" rel="external">
+            <div data-role="header" data-position="fixed" data-theme="b">
+                <h1 style="color:white; text-align: center; font-size: 6vh; padding-bottom: 0;">dropp.</h1>
+                <p style="color:grey; text-align: center; margin-top: 0; font-size: 2vh; letter-spacing:-0.5px">mobile wash and fold service</p>
+            </div>
+        </a> <!-- Header -->
+        </div>
+
+        <div>
+            <h1>We're sorry.</h1>
+            <p>An account associated with that email already exists. Please <a href="" onclick="window.location.href='login.html';return false ; location.reload(true);" rel="external">login</a> or <a href="" onclick="tryAgain()">try again</a>.</p>
+        </div>
+    </div>
+
+     <script>
+        function tryAgain() {
+            $(':mobile-pagecontainer').pagecontainer('change', '#registerPage');
+        }
+    </script>
+</body>
+</html>
