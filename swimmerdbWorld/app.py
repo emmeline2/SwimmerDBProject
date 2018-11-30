@@ -1,9 +1,7 @@
-#!/usr/bin/python3
-
-#route for login page logic 
 from flask import Flask, render_template, redirect, url_for, request, session
 import configparser
 import mysql.connector
+from mysql.connector import errorcode
 
 #config file 
 config = configparser.ConfigParser()
@@ -13,10 +11,18 @@ config.read('config.ini')
 app = Flask(__name__)
 
 def sql_query(sql): 
-    #db = mysql.connector.connect(**config['mysql.connector'])
-    try: 
-    db = mysql.connector.connect(user= 'root', password='db2018', host = '127.0.0.1', database='webdatabase')
     
+    try: 
+        db = mysql.connector.connect(**config['mysql.connector'])
+        #db = mysql.connector.connect(user='new_user', password='db2018', host = '127.0.0.1', database='webdatabase', auth_plugin='mysql_native_password')
+    except mysql.connector.Error as err: 
+        if err.errno == errorcode.ER_ACCESS_DENIED_ERROR: 
+            print("somethig is wrong with your credentials ")
+        elif err.errno == errorcode.ER_BAD_DB_ERROR:
+            print("Database does not exist")
+        else:
+            print(err)
+        return "error setting up database connection"
     cursor = db.cursor()
     cursor.execute(sql)
     result = cursor.fetchall()
@@ -42,14 +48,19 @@ def login():
     username = request.form.get('name',''); 
     password = request.form.get('password', '')
 
-    sql = "select * from person where name={username}"
+    sql = "select password from person where name={username}"
     found_user = sql_query(sql)
     print(found_user)
     print(username)
 
+    if found_user == username : 
+        print("yayyyy you are validated")
+        return redirect(url_for('success'))
+
     #store username in session cookie
     #session['name'] = username 
 
+    #should else return failure 
     return redirect(url_for('success'))
 
 @app.route('/success')

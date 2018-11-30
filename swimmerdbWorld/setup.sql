@@ -1,14 +1,15 @@
 --create database and user
 
-create database webdatabase; 
-create user 'emmeline'@'localhost' identified by 'eecs341pass'; 
-grant all on webdatabase.* to 'emmeline'@'localhost'; 
+create database webdatabase1; 
+create user 'new_user'@'localhost' identified by 'db2018'; 
+grant all on webdatabase.* to 'new_user'@'localhost'; 
 flush privileges; 
 
 
 --create tables 
 
-use webdatabase; 
+use webdatabase1; 
+update user set plugin="mysql_native_password" where User='new_user'; 
 
 CREATE TABLE entry(
 	entry_id int(11) not null, 
