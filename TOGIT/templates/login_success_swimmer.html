@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Results</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+  <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#">SwimmerTimes</a>
+    </div>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="logout.html" action="{{url_for('logout')}}"><span class="glyphicon glyphicon-log-in"></span>Logout</a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container">
+  <h2>Records</h2>
+  <p>These are your results:</p>
+  <table class="table table-bordered">
+<div class="btn-group">
+      <a type="button" class="btn btn-primary" href="swimmerAddPage.html">Add</a>
+    </div>
+     <input type="text" placeholder="Search...">
+
+    <thead>
+      <tr>
+        <th>Event</th>
+        <th>Distance</th>
+		  <th>Time</th>
+		  <th>Entry ID</th>
+      </tr>
+    </thead>
+    <tbody>
+		 {% for entry_id in entry['entries'] %}
+      <tr>
+        <td>{{ entries[0] }}</td>
+        <td>{{ entries[1] }}</td>
+        <td>{{ entries[2] }}</td>
+		  <td>{{ entries[3] }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+<h2>Delete a record:</h2>
+<p>
+	<form name="deleteForm" method="POST" action="{{url_for('deleteEntry')}}">
+		EntryID to delete:
+		<input type="number" name="entryID">
+	</form>
+</p>
+</div>
+</body>
+</html>
